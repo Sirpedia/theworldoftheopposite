@@ -1,0 +1,98 @@
+<html>
+<body id="body" style="font-family: arial">
+    <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="travel()">Travel</button>
+    <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="heal()">Heal</button>
+    <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="fly()">Fly</button>
+    <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="drop()">Drop Item</button>
+    <h1 id="text"></h1>
+    <h1 id="armor"></h1>
+    <h1 id="slot"></h1>
+    <h1 id="health">100hp</h1>
+    <h1 id="distance"></h1>
+
+    <script>
+        const textElement = document.getElementById("text");
+        const armorElement = document.getElementById("armor");
+        const slotElement = document.getElementById("slot");
+        const distanceElement = document.getElementById("distance");
+        const healthElement = document.getElementById("health");
+        const bodyElement = document.getElementById("body");
+        let hearts = 100;
+        let counter = 0;
+        let eventId = "";
+
+        function travel() {
+            if (slotElement.innerHTML === "regen sword") {
+                hearts+= 2;
+                
+                healthElement.innerHTML = hearts + "hp";
+            }
+            counter++;
+            distanceElement.innerHTML = counter + " meters";
+            const random = Math.random();
+            const eventIdString = random.toString();
+            eventId = eventIdString.substring(2, 3); // Get a single digit for eventId
+
+            if (eventId === "0") {
+                textElement.innerHTML = "nothing happened";
+            } else if (eventId === "1") {
+                textElement.innerHTML = "you find a crate in the ground";
+                const random2 = Math.random();
+                const lootIdString = random2.toString();
+                const lootId = lootIdString.substring(2, 3); // Get a single digit for lootId
+                if (slotElement.innerHTML === "") {
+                    if (lootId === "0") {
+                        slotElement.innerHTML = "regen sword";
+                    } else if (["1", "2", "3", "4", "5", "6", "7", "8"].includes(lootId)) {
+                        slotElement.innerHTML = "bandage";
+                    }
+                } else if (lootId === "9") {
+                    armorElement.innerHTML = "animal fur";
+                }
+            } else if (eventId === "3") {
+                textElement.innerHTML = "you trip on a rock and lose 10 hp";
+                if (armorElement.innerHTML === "animal fur") {
+                    hearts += 10;
+                }
+                hearts -= 20;
+                healthElement.innerHTML = hearts + "hp";
+            } else if (eventId === "4") {
+                textElement.innerHTML = "you get ambushed by a bunch of opposite thugs and lose much hp";
+                if (armorElement.innerHTML === "animal fur") {
+                    hearts += 20;
+                }
+                hearts -= counter;
+                healthElement.innerHTML = hearts + "hp";
+            } else if (["5", "6","7","8"].includes(eventId)) {
+                textElement.innerHTML = "nothing happened";
+            } else if (eventId === "9") {
+                textElement.innerHTML = "The World Of The Opposite is not called that for no reason. The world is now flipped.";
+                if (bodyElement.style.backgroundColor == "black") {
+                bodyElement.style.backgroundColor = "white";
+                bodyElement.style.color = "black";
+                }
+                else {
+                   bodyElement.style.backgroundColor = "black";
+                bodyElement.style.color = "white"; 
+                }
+            }
+            if (eventId == "7" && bodyElement.style.backgroundColor == "black") {
+                textElement.innerHTML = "you find the evolver and it upgrades your health!"
+                hearts = hearts + 100
+                healthElement.innerHTML = hearts + "hp"
+            }
+        }
+
+        function drop() {
+            slotElement.innerHTML = "";
+        }
+        function heal() {
+            if (slot.innerHTML == "bandage") {
+            hearts += 25
+            healthElement.innerHTML = hearts + "hp"
+            slot.innerHTML = ""
+            }
+        }
+    </script>
+</body>
+</html>
