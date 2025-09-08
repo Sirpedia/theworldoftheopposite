@@ -2,7 +2,7 @@
 <body id="body" style="font-family: arial">
     <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="travel()">Travel</button>
     <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="heal()">Heal</button>
-    <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="fly()">Fly</button>
+    <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="key()">Use Key</button>
     <button style="border: 1vw solid grey; font-size: 6vw; background-color: rgba(255,255,255,0); color: grey; font-family: arial" onclick="drop()">Drop Item</button>
     <h1 id="text"></h1>
     <h1 id="armor"></h1>
@@ -43,11 +43,13 @@
                 if (slotElement.innerHTML === "") {
                     if (lootId === "0") {
                         slotElement.innerHTML = "regen sword";
-                    } else if (["1", "2", "3", "4", "5", "6", "7", "8"].includes(lootId)) {
+                    } else if (["2", "3", "4", "5", "6", "7", "8"].includes(lootId)) {
                         slotElement.innerHTML = "bandage";
                     }
                 } else if (lootId === "9") {
                     armorElement.innerHTML = "animal fur";
+                } else if (lootId === "1") {
+                    slotElement.innerHTML = "Opposite Key";
                 }
             } else if (eventId === "3") {
                 textElement.innerHTML = "you trip on a rock and lose 10 hp";
@@ -59,7 +61,7 @@
             } else if (eventId === "4") {
                 textElement.innerHTML = "you get ambushed by a bunch of opposite thugs and lose much hp";
                 if (armorElement.innerHTML === "animal fur") {
-                    hearts += 20;
+                    hearts += counter/2;
                 }
                 hearts -= counter;
                 healthElement.innerHTML = hearts + "hp";
@@ -78,7 +80,12 @@
             }
             if (eventId == "7" && bodyElement.style.backgroundColor == "black") {
                 textElement.innerHTML = "you find the evolver and it upgrades your health!"
-                hearts = hearts + 100
+                hearts = hearts + 50
+                healthElement.innerHTML = hearts + "hp"
+            }
+             if (eventId == "5" && bodyElement.style.backgroundColor == "black") {
+                textElement.innerHTML = "Eriwoth finds and slams you through the earth"
+                hearts = hearts - 100
                 healthElement.innerHTML = hearts + "hp"
             }
         }
@@ -91,6 +98,18 @@
             hearts += 25
             healthElement.innerHTML = hearts + "hp"
             slot.innerHTML = ""
+            }
+        }
+        function key() {
+            if (slot.innerHTML == "Opposite Key") {
+            hearts += 25
+            healthElement.innerHTML = hearts + "hp"
+            slot.innerHTML = ""
+             textElement.innerHTML = "The World Of The Opposite is not called that for no reason. The world is now flipped.";
+                if (bodyElement.style.backgroundColor == "black") {
+                bodyElement.style.backgroundColor = "white";
+                bodyElement.style.color = "black";
+                }
             }
         }
     </script>
