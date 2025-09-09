@@ -45,12 +45,12 @@
                         slotElement.innerHTML = "regen sword";
                     } else if (["4", "5", "6", "7", "8"].includes(lootId)) {
                         slotElement.innerHTML = "bandage";
-                    }
-                } else if (lootId === "9") {
-                    armorElement.innerHTML = "animal fur";
-                } else if (["1", "2", "3"].includes(lootId)) {
+                    } else if (["1", "2", "3"].includes(lootId)) {
                     slotElement.innerHTML = "Opposite Key";
                 }
+                } else if (lootId === "9") {
+                    armorElement.innerHTML = "animal fur";
+                } 
             } else if (eventId === "3") {
                 textElement.innerHTML = "you trip on a rock and lose 10 hp";
                 if (armorElement.innerHTML === "animal fur") {
