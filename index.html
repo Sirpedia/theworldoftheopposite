@@ -7,7 +7,7 @@
     <h1 id="text"></h1>
     <h1 id="armor"></h1>
     <h1 id="slot"></h1>
-    <h1 id="health">100hp</h1>
+    <h1 id="health">200hp</h1>
     <h1 id="distance"></h1>
 
     <script>
@@ -17,7 +17,7 @@
         const distanceElement = document.getElementById("distance");
         const healthElement = document.getElementById("health");
         const bodyElement = document.getElementById("body");
-        let hearts = 100;
+        let hearts = 200;
         let counter = 0;
         let eventId = "";
 
@@ -43,12 +43,12 @@
                 if (slotElement.innerHTML === "") {
                     if (lootId === "0") {
                         slotElement.innerHTML = "regen sword";
-                    } else if (["2", "3", "4", "5", "6", "7", "8"].includes(lootId)) {
+                    } else if (["4", "5", "6", "7", "8"].includes(lootId)) {
                         slotElement.innerHTML = "bandage";
                     }
                 } else if (lootId === "9") {
                     armorElement.innerHTML = "animal fur";
-                } else if (lootId === "1") {
+                } else if (["1,", "2", "3"].includes(lootId)) {
                     slotElement.innerHTML = "Opposite Key";
                 }
             } else if (eventId === "3") {
