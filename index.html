@@ -54,11 +54,11 @@
                     armorElement.innerHTML = "animal fur";
                 } 
             } else if (eventId === "3") {
-                textElement.innerHTML = "you trip on a rock and lose 10 hp";
+                textElement.innerHTML = "you trip on a rock and lose 2 hp";
                 if (armorElement.innerHTML === "animal fur") {
-                    hearts += 10;
+                    hearts += 2;
                 }
-                hearts -= 20;
+                hearts -= 2;
                 healthElement.innerHTML = hearts + "hp";
             } else if (eventId === "4") {
                 textElement.innerHTML = "you get into a fight with a bunch of opposite thugs and lose much hp";
@@ -85,7 +85,7 @@
             }
             if (eventId == "7" && bodyElement.style.backgroundColor == "black") {
                 textElement.innerHTML = "you find the evolver and it upgrades your health!"
-                hearts = hearts + 50
+                hearts = hearts + 100
                 healthElement.innerHTML = hearts + "hp"
             }
              if (eventId == "5" && bodyElement.style.backgroundColor == "black") {
@@ -93,7 +93,10 @@
                 hearts = hearts - 100
                 healthElement.innerHTML = hearts + "hp"
                  if (slotElement.innerHTML === "Speed Scythe") {
-                    counter += 50
+                    counter += 100
+                }
+                 if (armorElement.innerHTML === "animal fur") {
+                    hearts += counter/4;
                 }
             }
         }
