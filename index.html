@@ -43,11 +43,13 @@
                 if (slotElement.innerHTML === "") {
                     if (lootId === "0") {
                         slotElement.innerHTML = "regen sword";
-                    } else if (["4", "5", "6", "7", "8"].includes(lootId)) {
+                    } else if (["5", "6", "7", "8"].includes(lootId)) {
                         slotElement.innerHTML = "bandage";
                     } else if (["1", "2", "3"].includes(lootId)) {
                     slotElement.innerHTML = "Opposite Key";
-                }
+                } else if (lootId === "4" && bodyElement.style.backgroundColor == "black") {
+                    slotElement.innerHTML = "Speed Scythe";
+                } 
                 } else if (lootId === "9") {
                     armorElement.innerHTML = "animal fur";
                 } 
@@ -65,6 +67,9 @@
                 }
                 hearts -= counter;
                 healthElement.innerHTML = hearts + "hp";
+                if (slotElement.innerHTML === "Speed Scythe") {
+                    counter += 50
+                }
             } else if (["5", "6","7","8"].includes(eventId)) {
                 textElement.innerHTML = "nothing happened";
             } else if (eventId === "9") {
@@ -87,6 +92,9 @@
                 textElement.innerHTML = "Eriwoth finds and slams you through the earth. in a reckless battle, you come out victorious, but at what cost?"
                 hearts = hearts - 100
                 healthElement.innerHTML = hearts + "hp"
+                 if (slotElement.innerHTML === "Speed Scythe") {
+                    counter += 50
+                }
             }
         }
 
